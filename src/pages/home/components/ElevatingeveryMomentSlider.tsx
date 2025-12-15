@@ -68,7 +68,7 @@ function ElevatingEveryMomentSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, // Enable auto scroll
-    autoplaySpeed: 2000,
+    autoplaySpeed: 2500,
     responsive: [
       {
         breakpoint: 1024,

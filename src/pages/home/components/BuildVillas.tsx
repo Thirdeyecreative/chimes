@@ -65,7 +65,7 @@ function BuildVillas() {
             className="w-[125px]"
             alt=""
           />
-          <h5>Zero Guilt. Pure Living</h5>
+          <h5>Zero Guilt, Pure Living</h5>
           {/* <p>
             Carbon Neutral with an Ultra Low <br /> Environmental Footprint
           </p> */}
