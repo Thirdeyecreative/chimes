@@ -7,7 +7,7 @@ const sections = [
   { name: "WATER FEATURE", image: "assets/Water Feature.webp" },
   { name: "SWIMMING POOL", image: "assets/Swimming Pool.webp" },
   { name: "BADMINTON/ PICKLEBALL", image: "assets/Badminton.webp" },
-  { name: "MUSIC WALL", image: "assets/Private Screen.webp" },
+  { name: "MUSICAL WALL", image: "assets/Private Screen.webp" },
   { name: "REFLEXOLOGY PATHWAY", image: "assets/Reflexology Pathway.webp" },
   { name: "PARTY LAWN", image: "assets/Party Lawn.webp" },
   { name: "AMPHITHEATER", image: "assets/Amphitheater.webp" },
