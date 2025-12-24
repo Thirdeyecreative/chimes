@@ -38,7 +38,7 @@
           alt=""
         />
 
-        <h3>TISB SCHOOL</h3>
+        <h3>World-Class Education</h3>
 
         {/* Desktop Image */}
         <img
@@ -48,8 +48,8 @@
         />
 
         <p>
-          One of the city’s premier international schools, known for world class
-          academics and a nurturing environment
+          Surrounded by top international schools such as TISB, Oakridge,
+          Greenwood High and Indus International.
         </p>
         <h4>20 Minutes Away</h4>
       </div>
