@@ -15,12 +15,12 @@ export default function WhatMatters() {
         Connected to What <br /> <span>Matters</span>
       </h3>
       <p className="desktop-view">
-        Discover a location that balances convenience with calm close to top
-        schools, malls, and city hubs.
+        Discover a location that balances convenience with calm, close to top
+        schools, malls and city hubs.
       </p>
       <p className="mobile-view-text">
-        A location that balances convenience with calm, close to top schools,
-        malls and city hubs.
+        Discover a location that balances convenience with calm, close to top
+        schools, malls and city hubs.
       </p>
 
       <div className="left-and-right-padding-in-content">
