@@ -38,7 +38,7 @@
           alt=""
         />
 
-        <h3>World-Class Education</h3>
+        <h3>WORLD-CLASS EDUCATION</h3>
 
         {/* Desktop Image */}
         <img
