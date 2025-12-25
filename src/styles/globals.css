@@ -4845,6 +4845,11 @@ video::-webkit-media-controls-panel {
   .nav-list {
     gap: 0.5rem;
   }
+
+  .left-and-right-padding-add {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
   .hero-the-chimes-logo-white {
     height: 300px !important;
     object-fit: contain !important;
@@ -4870,7 +4875,7 @@ video::-webkit-media-controls-panel {
   .navbar {
     padding: 1rem 0.5rem;
     width: 100% !important;
-    max-width: 1280px !important;
+    max-width: 100vw !important;
   }
 
   .s-cardContainer {
