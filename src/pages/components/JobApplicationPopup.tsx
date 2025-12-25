@@ -131,8 +131,8 @@ function JobApplicationPopup({
     <Dialog open={open} onClose={handleClose} className="relative z-99">
       <DialogBackdrop className="fixed inset-0 bg-gray-500/75" />
 
-      <div className="fixed inset-0 z-10 w-full h-[600px] md:h-[100vh] overflow-y-auto  popup-dilog-container">
-        <div className="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0">
+      <div className="fixed inset-0 z-10 w-screen h-[600px] md:h-[100vh] overflow-y-auto gap-0 popup-dilog-container">
+        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel className="relative popup-dilog overflow-hidden rounded-lg bg-[#F1EBE3] text-left shadow-xl sm:w-full sm:max-w-[900px]">
             <button onClick={handleClose} className="close-icon">
               <img src="assets/close menu icon.png" alt="" />
@@ -170,7 +170,7 @@ function JobApplicationPopup({
                     />
                   </div>
 
-                  <div className="popup-dilog-input-holder">
+                  <div className="popup-dilog-input-holder w-full">
                     <div>
                       <label>
                         Contact Number <span style={{ color: "red" }}>*</span>
@@ -181,6 +181,7 @@ function JobApplicationPopup({
                         value={formData.contactNumber}
                         onChange={handlePhoneChange}
                         required
+                        className="w-full"
                       />
                       {error.contactNumber && (
                         <span style={{ color: "red", fontSize: "0.875rem" }}>
@@ -217,6 +218,7 @@ function JobApplicationPopup({
                         borderRadius: "4px",
                         height: "40px",
 
+                        width: "100%",
                         paddingInline: "1rem", // Padding for left text
                         paddingRight: "2.5rem", // Extra padding on right so text doesn't touch the arrow
 
@@ -285,7 +287,9 @@ function JobApplicationPopup({
                     type="submit"
                     disabled={!isFormValid}
                     className={
-                      !isFormValid ? "opacity-50 cursor-not-allowed w-full" : " w-full"
+                      !isFormValid
+                        ? "opacity-50 cursor-not-allowed w-full"
+                        : " w-full"
                     }
                   >
                     Apply Now
