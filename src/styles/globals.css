@@ -279,7 +279,7 @@ body {
 
 .nav-list {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   list-style: none;
 }
 
@@ -536,10 +536,10 @@ video::-webkit-media-controls-overflow-button {
 video::-webkit-media-controls-enclosure {
   overflow: hidden !important;
 }
- 
-video::-webkit-media-controls-panel { 
-    width: calc(100% + 30px) !important; /* Adjust as needed */ 
-} 
+
+video::-webkit-media-controls-panel {
+  width: calc(100% + 30px) !important; /* Adjust as needed */
+}
 /* responsive design */
 
 /* Responsive styles */
@@ -557,8 +557,6 @@ video::-webkit-media-controls-panel {
     border-radius: 40px;
     background: rgba(242, 238, 238, 0.12) !important;
   }
-
-
 
   /* Mobile: top (transparent) */
   .mobile-bg-top {
@@ -720,7 +718,7 @@ video::-webkit-media-controls-panel {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  text-align: center;
+  text-align: right;
 }
 
 /* Rest of your existing styles */
@@ -747,6 +745,23 @@ video::-webkit-media-controls-panel {
   z-index: 12;
 }
 
+.hero-section .text-section span {
+  font-family: var(--font-family-sequel-bold-display);
+
+  font-size: clamp(16px, 1.85vw, 30px);
+  line-height: 1.2;
+  font-weight: 425;
+  color: #f1ebe3;
+
+  /* Text Shadow makes it readable over the tree leaves */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  position: relative;
+  right: 0;
+  left: auto;
+  padding-right: 8.5%;
+}
+
 /* 5. The Big Script Logo */
 .hero-the-chimes-logo-white {
   display: block;
@@ -765,7 +780,7 @@ video::-webkit-media-controls-panel {
   font-family: var(--font-family-2);
   font-weight: 700;
   font-style: medium;
-  font-size: clamp(5rem, 15vw, 15.625rem);
+  font-size: 9.5vw;
   text-align: center;
   color: #f1ebe3;
   line-height: 0.48;
@@ -803,13 +818,7 @@ video::-webkit-media-controls-panel {
     padding-inline: 1rem;
   }
 
-  .hero-section .text-section h2 {
-    font-size: clamp(3rem, 10vw, 4.625rem);
-    line-height: 0.46;
-    margin-bottom: -0.8rem;
-    margin-top: 0.4rem;
-    font-weight: 530;
-  }
+  
 
   .hero-section .hero-image-background {
     object-fit: cover;
@@ -867,9 +876,7 @@ video::-webkit-media-controls-panel {
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
-  /* .hero-section .text-section h2 {
-    font-size: 8rem;
-  } */
+ 
 
   .hero-section .hero-image-background {
     top: 15%;
@@ -894,9 +901,7 @@ video::-webkit-media-controls-panel {
     height: 100vh;
   }
 
-  /* .hero-section .text-section h2 {
-    font-size: 10rem;
-  } */
+ 
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
@@ -914,9 +919,7 @@ video::-webkit-media-controls-panel {
     margin-bottom: -30px;
   }
 
-  /* .hero-section .text-section h2 {
-    font-size: 11rem;
-  } */
+ 
 }
 
 @media (min-width: 1281px) and (max-width: 1399px) {
@@ -934,9 +937,6 @@ video::-webkit-media-controls-panel {
     margin-bottom: -30px;
   }
 
-  /* .hero-section .text-section h2 {
-    font-size: 14rem;
-  } */
 }
 
 /* build villas section */
@@ -2739,8 +2739,8 @@ video::-webkit-media-controls-panel {
 }
 
 .left-and-right-padding-add {
-  padding-left: 8rem;
-  padding-right: 8rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .left-and-right-padding-in-content {
@@ -2810,6 +2810,348 @@ video::-webkit-media-controls-panel {
 .mobile-sidebar-image,
 .video-showcase-button2 {
   display: none !important;
+}
+
+/* SECTION */
+.partner-section {
+  padding: 10rem 0; /* 160px top & bottom */
+  padding-top: 0;
+}
+
+/* CONTAINER */
+.partner-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* GRID */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* CARD */
+.partner-card {
+}
+
+/* IMAGE */
+.partner-image {
+  position: relative;
+  width: 100%;
+  height: 437px !important;
+}
+
+.partner-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 30px 0px #00000026;
+
+  border-radius: 32px;
+}
+
+/* CONTENT */
+.partner-content {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-content h3 {
+  font-size: 32px;
+  line-height: 120%;
+  font-weight: 600;
+  color: #0a0c02;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-2);
+
+  font-weight: 600;
+}
+
+.partner-content p {
+  font-size: 20px;
+  line-height: 140%;
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-family-sequel-book);
+  font-weight: 400;
+}
+
+/* BUTTON */
+.partner-content button {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #6a8b5c;
+  background: transparent;
+  color: #2e5e3e;
+  font-size: 1rem;
+  line-height: 120%;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-family: var(--font-family-sequel-random);
+  font-weight: 500;
+}
+
+.partner-content button:hover {
+  background: #6a8b5c;
+  color: #ffffff;
+}
+
+.open-roles {
+  padding-bottom: 10rem;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.open-roles__title {
+  font-size: 5rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+  line-height: 100%;
+  font-family: var(--font-family-2);
+  letter-spacing: -3px;
+}
+
+.open-roles__title span {
+  color: #2f6b2f;
+  font-style: italic;
+}
+
+.open-roles__subtitle {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #4f584f;
+  font-family: var(--font-family-sequel-random);
+}
+
+.open-roles__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 2px solid #2f6b2f;
+  border-radius: 32px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #2f6b2f;
+  text-decoration: none;
+  font-family: var(--font-family-sequel-random);
+  font-weight: 410;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* first child  */
+.open-roles__actions .pill-btn--phone:hover svg path {
+  fill: #ffffff;
+}
+.open-roles__actions .pill-btn--email:hover svg path {
+  fill: #ffffff;
+}
+
+.pill-btn:hover {
+  background-color: #2f6b2f;
+  color: #ffffff;
+}
+
+.open-roles__list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.role-item {
+  position: relative;
+  padding: 32px 0;
+  border-top: 1px solid rgba(44, 108, 34, 0.5);
+}
+
+/* Dots */
+.role-item::before,
+.role-item::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  width: 3px;
+  height: 3px;
+  background-color: rgba(44, 108, 34, 0.5);
+  border-radius: 50%;
+}
+
+.role-item::before {
+  left: 0;
+}
+
+.role-item::after {
+  right: 0;
+}
+
+/* ✅ First item – remove border + dots */
+.role-item:first-child {
+  border-top: none;
+}
+
+.role-item:first-child::before,
+.role-item:first-child::after {
+  display: none;
+}
+
+.role-item__title {
+  font-size: 2rem;
+  color: #1f1f1f;
+  margin-bottom: 6px;
+  font-weight: 400;
+  font-family: var(--font-family-2);
+  line-height: 100%;
+}
+
+.role-item__location {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.08em;
+  color: #15420e;
+  font-family: var(--font-family-sequel-book);
+  font-weight: 400;
+}
+
+.popup-dilog-input-holder {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1rem;
+}
+
+#message::placeholder {
+  padding-left: 0.4rem;
+}
+
+/* Wrapper for date input */
+.popup-dilog-form input[type="date"] {
+  position: relative;
+  padding-right: 40px; /* space for svg icon */
+}
+
+/* Hide native calendar icon (Chrome, Edge, Safari) */
+.popup-dilog-form input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+/* Hide native icon (Firefox fallback) */
+.popup-dilog-form input[type="date"]::-moz-calendar-picker-indicator {
+  opacity: 0;
+}
+
+/* SVG calendar icon positioning */
+.date-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* input still clickable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional: hover effect */
+.popup-dilog-form input[type="date"]:hover + .date-icon svg path {
+  fill: #358927; /* green hover like UI */
+}
+
+.resume-choose-btn {
+  border: 1px solid rgba(53, 137, 39, 1);
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.resume-upload-ui {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.resume-file-name {
+  font-family: var(--font-family-2);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 22px;
+  color: rgba(0, 1, 0, 1);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet */
+@media (max-width: 640px) {
+  .partner-image {
+    height: 260px !important;
+  }
+
+  .partner-content {
+    padding: 0rem;
+    padding-top: 1rem;
+  }
+
+  .partner-content p {
+    font-size: 1rem;
+  }
+
+  .open-roles__title{
+    font-size: 1.75rem;
+  }
+
+  .role-item__title{
+    font-size: 1.5rem;
+  }
+  .role-item__location{
+    font-size: 1rem;
+  }
+  .open-roles{
+    padding-inline: 0.5rem;
+    padding-bottom: 4rem;
+  }
+  .open-roles__actions{
+    margin-bottom: 1rem;
+  }
+
+  .partner-container{
+    padding-inline: 0.5rem;
+
+  }
+
+  .partner-content h3{
+    font-size: 1.75rem;
+  }
+
+  .partner-section{
+    padding-bottom: 4rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .partner-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .partner-image {
+    height: 280px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -2926,9 +3268,8 @@ video::-webkit-media-controls-panel {
     vertical-align: middle !important;
     color: #15420e !important;
     margin-bottom: 0 !important;
-    padding-left:  0  !important;
-    padding-right: 0  !important;
-
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .chimes-map-popup-logo {
@@ -3434,9 +3775,7 @@ video::-webkit-media-controls-panel {
     background: #2c6c22 !important;
   }
 
-  /* .hero-section .text-section h2 {
-    font-size: 3.5rem;
-  } */
+ 
 
   .what-matters-content-holder-parent h3,
   .what-matters-content-holder-parent h3 span {
@@ -3782,6 +4121,11 @@ video::-webkit-media-controls-panel {
   .button-in-slider-element-holder {
     right: 0 !important;
   }
+
+  .navbar {
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
@@ -3810,6 +4154,11 @@ video::-webkit-media-controls-panel {
   .natureinspiredvilla-content-holder-text p {
     font-size: 16px;
     line-height: 20px;
+  }
+
+  .navbar {
+    max-width: 100vw !important;
+    width: 100% !important;
   }
 
   .swiper {
@@ -4002,6 +4351,11 @@ video::-webkit-media-controls-panel {
     background: #f1ebe3;
   }
 
+  .navbar {
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+
   .natureinspiredvilla-sub-container-content-holder {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -4033,6 +4387,11 @@ video::-webkit-media-controls-panel {
 
   .swiper-cards .swiper-slide {
     height: fit-content !important;
+  }
+
+  .navbar {
+    max-width: 100vw !important;
+    width: 100% !important;
   }
 
   .swiper {
@@ -4158,6 +4517,9 @@ video::-webkit-media-controls-panel {
 
   .navbar {
     padding: 1rem 0.5rem;
+    max-width: 100vw !important;
+    width: 100% !important;
+
   }
 
   .left-and-right-padding-in-content,
@@ -4473,8 +4835,6 @@ video::-webkit-media-controls-panel {
   }
 }
 
-
-
 @media (min-width: 1341px) and (max-width: 1390px) {
   /* your styles here */
   .nav-action,
@@ -4505,6 +4865,8 @@ video::-webkit-media-controls-panel {
 
   .navbar {
     padding: 1rem 0.5rem;
+    width: 100% !important;
+    max-width: 1280px !important;
   }
 
   .s-cardContainer {
@@ -4552,9 +4914,7 @@ video::-webkit-media-controls-panel {
     width: 160px !important;
   }
 
-  .hero-section .text-section h2 {
-    line-height: 0.46 !important;
-  }
+  
 
   .grid1 {
     grid-area: grid1;
@@ -4786,7 +5146,8 @@ video::-webkit-media-controls-panel {
   letter-spacing: 0%;
 }
 
-.popup-dilog-form div input::placeholder {
+.popup-dilog-form div input::placeholder,
+.popup-dilog-form div textarea::placeholder {
   font-family: var(--font-family-sequel-medium);
   font-weight: 405;
   font-size: 14px;
@@ -5002,18 +5363,7 @@ input:-moz-autofill:active {
     padding-bottom: 3rem;
   }
 
-  .hero-section .text-section h2 {
-    font-family: var(--font-family-2);
-    font-weight: 700;
-    font-style: medium;
-    font-size: clamp(5rem, 15vw, 15.625rem);
-    text-align: center;
-    color: #f1ebe3;
-    line-height: 0.49;
-    padding-top: 1rem;
-    margin-top: 0rem;
-    transform: translateY(-16px);
-  }
+
 
   .clickid-item-holder-in-floor-plan {
     width: 100%;
@@ -5091,9 +5441,7 @@ input:-moz-autofill:active {
     align-self: flex-end;
     transform: translateY(-20px);
   }
-  .hero-section .text-section h2 {
-    transform: translateY(-9px) !important;
-  }
+  
 }
 
 /* Mobile Resolution Fixes */
@@ -5195,8 +5543,5 @@ input:-moz-autofill:active {
     font-size: 27px !important;
   }
 
-  /* 6. Hero text lower */
-  .hero-section .text-section h2 {
-    transform: translateY(-3px) !important;
-  }
+ 
 }

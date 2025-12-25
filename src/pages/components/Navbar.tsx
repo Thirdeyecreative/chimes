@@ -8,18 +8,121 @@ import AudioPlayer from "@/pages/home/hooks/AudioPlayer";
 import SendEnquiryPopup from "./SendEnquiryPopup";
 import { useAuthContext } from "../AuthContext/AuthContext";
 import GlassSurface from "@/ReactBits/GlassSurface/GlassSurface";
+import { useRouter, usePathname } from "next/navigation";
+
+// Define nav items outside component to keep it stable
+const navItems = [
+  { name: "About Us", id: "about-us" },
+  { name: "Highlights", id: "highlights" },
+  { name: "Gallery", id: "gallery" },
+  { name: "Amenities", id: "amenities" },
+  { name: "Floor Plans", id: "floor-plans" },
+  { name: "Nearby", id: "nearby" },
+  { name: "Channel Partner", id: null, link: "channelpartner" },
+  { name: "Careers", id: null, link: "careers" },
+];
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
-  const { selectedNav, setSelectedNav } = useAuthContext();
+  const { selectedNav, setSelectedNav, isOpen, setIsOpen } = useAuthContext();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // Check if mobile and handle scroll/resize events
+  // ---------------------------------------------------------
+  // 1. SCROLL SPY LOGIC (Homepage Only)
+  // ---------------------------------------------------------
   useEffect(() => {
+    // Only run this observer on the homepage
+    if (pathname !== "/") return;
+
+    const observerOptions = {
+      root: null,
+      // 🔹 FIX: Changed from -50% to -40%.
+      // This creates a slightly wider detection zone (20% of screen height) in the middle
+      // making it easier to catch smaller sections or end-of-page sections.
+      rootMargin: "-40% 0px -40% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setSelectedNav(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    navItems.forEach((item) => {
+      if (item.id) {
+        const element = document.getElementById(item.id);
+        if (element) observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [pathname, setSelectedNav]);
+
+  // ---------------------------------------------------------
+  // 2. SCROLL HANDLERS (Visibility & Bottom Detection)
+  // ---------------------------------------------------------
+
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      // 1. Detect if user is at top
+      setIsAtTop(currentScroll === 0);
+
+      // 2. Hide/Show Navbar logic
+      if (currentScroll > lastScrollY && currentScroll > 50) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+      setLastScrollY(currentScroll);
+
+      // 3. Mobile background logic
+      if (isMobile && currentScroll > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // 🔹 FIX: Bottom of Page Detection for "Nearby"
+      // If the user is at the very bottom of the page, force the last ID item to be active.
+      // This overrides the observer if the last section is too short to reach the middle of the screen.
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 50
+      ) {
+        const lastIdItem = navItems.filter((item) => item.id).pop();
+        if (lastIdItem) {
+          setSelectedNav(lastIdItem.id);
+        }
+      }
+    };
+
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 1025);
+    };
+
+    const handleResize = () => {
+      checkIfMobile();
+      if (window.innerWidth > 1025) {
+        closeMenu();
+      }
     };
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -31,35 +134,20 @@ export default function Navbar() {
       }
     };
 
-    const handleResize = () => {
-      checkIfMobile();
-      if (window.innerWidth > 1025) {
-        closeMenu();
-      }
-    };
-
-    const handleScroll = () => {
-      if (isMobile && window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
     // Initial check
     checkIfMobile();
 
     // Event listeners
-    document.addEventListener("mousedown", handleClickOutside);
-    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isMobile]);
+  }, [lastScrollY, isMobile, setSelectedNav]); // Added dependencies
 
   const closeMenu = () => {
     setIsActive(false);
@@ -71,15 +159,29 @@ export default function Navbar() {
     document.body.style.overflow = isActive ? "" : "hidden";
   };
 
-  const scrollToSection = (id: string) => {
-    setSelectedNav(id);
+  const scrollToSection = (id: string | null, link?: string) => {
     closeMenu();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+
+    if (id !== null) {
+      // Logic for scrolling within the page
+      setSelectedNav(id);
+
+      if (pathname !== "/") {
+        // If not on homepage, go there first, then scroll
+        router.replace(`/#${id}`);
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }
+    } else if (link) {
+      // Logic for external pages
+      setSelectedNav(null); // Clear active state regarding scroll spy
+      router.push(link);
     }
   };
 
@@ -127,45 +229,6 @@ export default function Navbar() {
     },
   };
 
-  // Navigation items with their corresponding IDs
-  const navItems = [
-    { name: "About Us", id: "about-us" },
-    { name: "Highlights", id: "highlights" },
-    { name: "Gallery", id: "gallery" },
-    { name: "Amenities", id: "amenities" },
-    { name: "Floor Plans", id: "floor-plans" },
-    { name: "Nearby", id: "nearby" },
-  ];
-
-  const { isOpen, setIsOpen } = useAuthContext();
-
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isAtTop, setIsAtTop] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-
-      // ✔ Detect if user is at top
-      setIsAtTop(currentScroll === 0);
-
-      // ✔ Hide when scrolling down
-      if (currentScroll > lastScrollY && currentScroll > 50) {
-        setIsNavbarVisible(false);
-      }
-      // ✔ Show when scrolling up
-      else {
-        setIsNavbarVisible(true);
-      }
-
-      setLastScrollY(currentScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
   return (
     <header
       className={`header z-1 bg-white w-full fixed top-0 left-0 right-0
@@ -211,23 +274,32 @@ export default function Navbar() {
                 initial="closed"
                 animate={isActive ? "open" : "closed"}
               >
-                {navItems.map((item, i) => (
-                  <motion.li
-                    key={item.id}
-                    className={`nav-item `}
-                    variants={menuItemVariants}
-                    custom={i}
-                  >
-                    <button
-                      className={`nav-link cursor-pointer  ${
-                        selectedNav === item.id ? "active-link" : ""
-                      }`}
-                      onClick={() => scrollToSection(item.id)}
+                {navItems.map((item, i) => {
+                  // 🔹 LOGIC TO DETERMINE ACTIVE LINK
+                  const isActiveLink =
+                    // Scenario 1: On Homepage & Scroll Spy Match
+                    (pathname === "/" && item.id && selectedNav === item.id) ||
+                    // Scenario 2: On External Page & Pathname Match (e.g., /careers)
+                    (item.link && pathname === `/${item.link}`);
+
+                  return (
+                    <motion.li
+                      key={item.id || item.link}
+                      className={`nav-item `}
+                      variants={menuItemVariants}
+                      custom={i}
                     >
-                      {item.name}
-                    </button>
-                  </motion.li>
-                ))}
+                      <button
+                        className={`nav-link cursor-pointer  ${
+                          isActiveLink ? "active-link" : ""
+                        }`}
+                        onClick={() => scrollToSection(item.id, item.link)}
+                      >
+                        {item.name}
+                      </button>
+                    </motion.li>
+                  );
+                })}
                 <motion.li
                   className="nav-item mobile-button "
                   style={{ background: "rgba(242, 238, 238, 0.12)" }}
