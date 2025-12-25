@@ -3956,6 +3956,10 @@ video::-webkit-media-controls-panel {
     border-bottom: none;
     border-radius: 0;
   }
+
+  .text-section div{
+    padding-inline: 0rem !important;
+  }
   .acreo-of-the-chimes-text-and-image-container
     .text-area-inside-text-and-image-container:hover,
   .selected-text-in-acreo-of-the-chimes {
