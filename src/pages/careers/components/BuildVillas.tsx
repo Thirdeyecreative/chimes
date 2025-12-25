@@ -1,25 +1,39 @@
-﻿import ScrollReveal from "@/ReactBits/ScrollReveal/ScrollReveal";
+﻿import Image from "next/image";
+import ScrollReveal from "@/ReactBits/ScrollReveal/ScrollReveal";
 
 function BuildVillas() {
   return (
     <div className="build-villas-content-holder ">
-      <img
+      <Image
         src="/assets/build-villas-image1.webp"
         id="about-us"
         width={140}
         height={140}
         alt="build-villas"
+        quality={100}
       />
       <div className="build-villas-text-holder">
         <div className="coma-icon">
-          <img src="/assets/build-villas-image3.svg" alt="coma icon" />
+          <Image
+            src="/assets/build-villas-image3.svg"
+            alt="coma icon"
+            width={40}
+            height={40}
+            quality={100}
+          />
         </div>
         <h4>
           Building with Purpose
           <br /> <span>Growing with People</span>
         </h4>
         <div className="coma-icon2">
-          <img src="/assets/build-villas-image2.svg" alt="coma icon" />
+          <Image
+            src="/assets/build-villas-image2.svg"
+            alt="coma icon"
+            width={40}
+            height={40}
+            quality={100}
+          />
         </div>
       </div>
       <ScrollReveal
