@@ -3528,6 +3528,11 @@ video::-webkit-media-controls-panel {
     width: 100%;
   }
 
+
+  .popup-dilog-input-holder{
+    grid-template-columns: 1fr !important;
+  }
+
   .nav-menu {
     width: 100vw !important;
     height: 100vh !important;
