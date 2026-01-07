@@ -27,6 +27,7 @@ function BuildVillas() {
         enableBlur={true}
         baseRotation={5}
         blurStrength={10}
+        textClassName="channel-partner-text"
       >
         The Chimes Channel Partner Program is designed to build long-term,
         meaningful associations with trusted real estate professionals who share

@@ -5,10 +5,23 @@ function AuthContextProvider({ children }: any) {
   const [selectedNav, setSelectedNav] = useState<String>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [hasGlobalAudioTriggered, setHasGlobalAudioTriggered] =
+    useState<boolean>(false);
+  const [hasPopupOpened, setHasPopupOpened] = useState<boolean>(false);
 
   return (
     <AuthContext.Provider
-      value={{ selectedNav, setSelectedNav, isOpen, setIsOpen, audioRef }}
+      value={{
+        selectedNav,
+        setSelectedNav,
+        isOpen,
+        setIsOpen,
+        audioRef,
+        hasGlobalAudioTriggered,
+        setHasGlobalAudioTriggered,
+        hasPopupOpened,
+        setHasPopupOpened,
+      }}
     >
       {children}
     </AuthContext.Provider>

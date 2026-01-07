@@ -1,10 +1,12 @@
 ﻿import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function FooterSection() {
   const phoneNumber = "9731744266";
   const emailAddress = "contact@raiseinfra.in";
   const locationAddress = "Chikkatirupati Rd, Sarjapura, Bengaluru - 562125";
   const googleMapsUrl = `https://maps.app.goo.gl/UYCxebpZkefztAgLA`;
+  const router = useRouter();
 
   return (
     <footer className="footer-section left-and-right-padding-in-content">
@@ -262,7 +264,25 @@ function FooterSection() {
 
       <div className="footer-copyright-section">
         <p>© 2025 All Right Reserved by Raise Infra</p>
-        <p>Terms and conditions</p>
+        <div className="flex items-center gap-3">
+          <p
+            onClick={() => {
+              router.push("/termsandcondition");
+            }}
+            className="cursor-pointer"
+          >
+            Terms and conditions
+          </p>
+          |
+          <p
+            onClick={() => {
+              router.push("/privacypolicy");
+            }}
+            className="cursor-pointer"
+          >
+            Privacy Policy
+          </p>
+        </div>
       </div>
     </footer>
   );

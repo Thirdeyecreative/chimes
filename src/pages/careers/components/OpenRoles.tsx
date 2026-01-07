@@ -53,7 +53,7 @@ const OpenRoles = () => {
               fill="#2C6C22"
             />
           </svg>
-          +91 98765 43210
+          +91 9876543210
         </a>
         <a
           href="mailto:support@thechimes.in"

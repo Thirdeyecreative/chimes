@@ -5,16 +5,17 @@ import { useAuthContext } from "@/pages/AuthContext/AuthContext";
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const audioRef = useAuthContext().audioRef;
+  const { audioRef, hasGlobalAudioTriggered, setHasGlobalAudioTriggered } =
+    useAuthContext();
 
   const audioSrc = "assets/Healing Chimes (mp3cut.net).mp3";
 
   // 1. ADD THIS EFFECT: Listen to the actual DOM element for state changes
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio) return; 
 
-    const onPlay = () => setIsPlaying(true);
+    const onPlay = () => setIsPlaying(true);  
     const onPause = () => setIsPlaying(false);
 
     // Subscribe to native audio events
@@ -28,25 +29,25 @@ const AudioPlayer = () => {
     };
   }, [audioRef]);
 
-  // 2. KEEP GLOBAL CLICK HANDLER (Your existing logic for auto-play)
   useEffect(() => {
+    if (hasGlobalAudioTriggered) return;
+
     const handleGlobalClick = async () => {
       if (!isPlaying && audioRef.current && !hasInteracted) {
         try {
           await audioRef.current.play();
-          // We don't need setIsPlaying(true) here anymore, the event listener handles it
+          setHasGlobalAudioTriggered(true);
         } catch (error) {
           console.log("Audio play failed:", error);
         }
       }
-      document.removeEventListener("click", handleGlobalClick);
     };
 
-    document.addEventListener("click", handleGlobalClick);
+    document.addEventListener("click", handleGlobalClick, { once: true });
     return () => {
       document.removeEventListener("click", handleGlobalClick);
     };
-  }, [hasInteracted]); // Added dependency to prevent re-triggering if user manually stopped it
+  }, [hasGlobalAudioTriggered, hasInteracted, isPlaying]);
 
   // 3. UPDATE TOGGLE FUNCTION: Remove manual state setting
   const togglePlayPause = async (e: any) => {
