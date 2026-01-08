@@ -8,6 +8,7 @@ function AuthContextProvider({ children }: any) {
   const [hasGlobalAudioTriggered, setHasGlobalAudioTriggered] =
     useState<boolean>(false);
   const [hasPopupOpened, setHasPopupOpened] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   return (
     <AuthContext.Provider
@@ -19,8 +20,9 @@ function AuthContextProvider({ children }: any) {
         audioRef,
         hasGlobalAudioTriggered,
         setHasGlobalAudioTriggered,
-        hasPopupOpened,
         setHasPopupOpened,
+        isPlaying,
+        setIsPlaying,
       }}
     >
       {children}

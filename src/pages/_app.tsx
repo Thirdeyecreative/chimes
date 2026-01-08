@@ -3,6 +3,8 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import AuthContextProvider from "./AuthContext/AuthContext";
 import { Analytics } from "@vercel/analytics/next";
+import PersistentAudio from "./components/PersistentAudio";
+import PersistentPopupTimer from "./components/PersistentPopupTimer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -44,6 +46,8 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <Analytics />
+      <PersistentAudio />
+      <PersistentPopupTimer />
       <Component {...pageProps} />
     </AuthContextProvider>
   );

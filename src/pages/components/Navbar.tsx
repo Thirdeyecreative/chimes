@@ -39,21 +39,6 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Auto-open enquiry popup after 15 seconds
-  useEffect(() => {
-    if (hasPopupOpened) return;
-
-    const timer = setTimeout(() => {
-      // Check again inside timeout just in case
-      if (!hasPopupOpened && !isOpen) {
-        setIsOpen(true);
-        setHasPopupOpened(true);
-      }
-    }, 15000);
-
-    return () => clearTimeout(timer);
-  }, [hasPopupOpened, isOpen, setIsOpen, setHasPopupOpened]);
-
   // ---------------------------------------------------------
   // 1. SCROLL SPY LOGIC (Homepage Only)
   // ---------------------------------------------------------
