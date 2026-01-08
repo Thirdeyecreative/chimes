@@ -15,10 +15,10 @@ const FixedEnquiryButton = () => {
           alignItems: "center",
           gap: "8px",
           background: "#2c6c22",
-          borderTopLeftRadius: "16px",
-          borderBottomLeftRadius: "16px",
-          borderTopRightRadius: "0px",
-          borderBottomRightRadius: "0px",
+          borderTopLeftRadius: "0px",
+          borderBottomLeftRadius: "0px",
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
         }}
       >
         <span>Enquire Now</span>
@@ -33,11 +33,10 @@ const FixedEnquiryButton = () => {
           transition: transform 0.3s ease-in-out;
 
           /* Use writing-mode for sharp vertical text instead of rotate */
-          writing-mode: vertical-rl;
+          writing-mode: vertical-lr;
           text-orientation: mixed;
-          transform: none;
+          transform: rotate(180deg);
         }
-        
       `}</style>
     </div>
   );

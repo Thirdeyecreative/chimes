@@ -2906,10 +2906,11 @@ video::-webkit-media-controls-panel {
   line-height: 100%;
   font-family: var(--font-family-2);
   letter-spacing: -3px;
+  color: #15420E;
 }
 
 .open-roles__title span {
-  color: #2f6b2f;
+  color: #2B851D;
   font-style: italic;
   font-weight: 600;
 }
