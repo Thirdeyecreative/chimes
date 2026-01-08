@@ -2906,11 +2906,11 @@ video::-webkit-media-controls-panel {
   line-height: 100%;
   font-family: var(--font-family-2);
   letter-spacing: -3px;
-  color: #15420E;
+  color: #15420e;
 }
 
 .open-roles__title span {
-  color: #2B851D;
+  color: #2b851d;
   font-style: italic;
   font-weight: 600;
 }
@@ -3189,14 +3189,17 @@ video::-webkit-media-controls-panel {
 
   .privacy-text {
     font-size: 0.98rem;
-    line-height: 2rem;
     padding-inline: 1rem;
-    text-align: justify;
+    text-align: justify;  
+    text-align-last: left;
+    word-break: break-word;
     /* fix space problem like word space */
-    letter-spacing: 0.05rem;
-    word-spacing: 0.05rem;
-    line-height: 2rem;
+    line-height: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  .partner-grid{
+    gap: 4rem;
   }
 
   .partner-content {
@@ -3347,6 +3350,7 @@ video::-webkit-media-controls-panel {
 
   .right-side-popup-content-holder {
     height: 98vh;
+    overflow-x: scroll;
   }
 
   .chimes-map-popup-card {
@@ -4230,7 +4234,7 @@ video::-webkit-media-controls-panel {
     width: 100% !important;
   }
 
-  .hero-section .text-section h2{
+  .hero-section .text-section h2 {
     line-height: 0;
     margin-bottom: -2px;
   }
@@ -4452,10 +4456,9 @@ video::-webkit-media-controls-panel {
   .naturallybuiltarea-card-content-holder img {
     max-height: 400px;
   }
-   .privacy-title {
+  .privacy-title {
     font-size: 4rem;
     margin-bottom: 1rem;
-
   }
   .privacy-wrapper {
     padding-block: 6rem;
@@ -4470,12 +4473,12 @@ video::-webkit-media-controls-panel {
 
   .privacy-text {
     font-size: 1.5rem;
-    line-height: 2rem;
+    line-height: 1.5rem;
     padding-inline: 1.5rem;
     text-align: justify;
-    /* fix space problem like word space */
-    letter-spacing: 0.05rem;
-    word-spacing: 0.05rem;
+    text-align-last: left;
+    word-break: break-word;
+    /* Removed manual spacing to fix "too much space" issue */
     line-height: 1.8rem;
     margin-bottom: 1.5rem;
   }
@@ -4630,9 +4633,9 @@ video::-webkit-media-controls-panel {
     line-height: 2rem;
     padding-inline: 1.5rem;
     text-align: justify;
-    /* fix space problem like word space */
-    letter-spacing: 0.05rem;
-    word-spacing: 0.05rem;
+    text-align-last: left;
+    word-break: break-word;
+    /* Removed manual spacing to fix "too much space" issue */
     line-height: 1.8rem;
     margin-bottom: 1.5rem;
   }
@@ -5647,7 +5650,7 @@ input:-moz-autofill:active {
     border: none;
   }
 
-  .nav-toggle{
+  .nav-toggle {
     background: white !important;
   }
 
