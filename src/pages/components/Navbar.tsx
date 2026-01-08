@@ -36,7 +36,7 @@ export default function Navbar() {
     hasPopupOpened,
     setHasPopupOpened,
   } = useAuthContext();
-  const router = useRouter();
+
   const pathname = usePathname();
 
   // ---------------------------------------------------------
@@ -167,32 +167,6 @@ export default function Navbar() {
     document.body.style.overflow = isActive ? "" : "hidden";
   };
 
-  const scrollToSection = (id: string | null, link?: string) => {
-    closeMenu();
-
-    if (id !== null) {
-      // Logic for scrolling within the page
-      setSelectedNav(id);
-
-      if (pathname !== "/") {
-        // If not on homepage, go there first, then scroll
-        router.replace(`/#${id}`);
-      } else {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }
-    } else if (link) {
-      // Logic for external pages
-      setSelectedNav(null); // Clear active state regarding scroll spy
-      router.push(link);
-    }
-  };
-
   // Animation variants
   const navVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -255,7 +229,7 @@ export default function Navbar() {
       }}
       ref={navbarRef}
     >
-      <div className=" left-and-right-padding-add  max-w-[1536px] w-full mx-auto">
+      <div className=" left-and-right-padding-add  max-w-[1536px] w-full mx-auto navbar-main-container">
         <motion.nav
           className="navbar"
           initial="hidden"
@@ -290,6 +264,29 @@ export default function Navbar() {
                     // Scenario 2: On External Page & Pathname Match (e.g., /careers)
                     (item.link && pathname === `/${item.link}`);
 
+                  const href = item.link ? `/${item.link}` : `/#${item.id}`;
+
+                  const handleNavClick = (e: React.MouseEvent) => {
+                    closeMenu();
+
+                    if (item.id) {
+                      setSelectedNav(item.id);
+                      if (pathname === "/") {
+                        e.preventDefault();
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          element.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        }
+                      }
+                      // If not on homepage, let the Link handle the navigation to /#id
+                    } else {
+                      setSelectedNav(null);
+                    }
+                  };
+
                   return (
                     <motion.li
                       key={item.id || item.link}
@@ -297,14 +294,15 @@ export default function Navbar() {
                       variants={menuItemVariants}
                       custom={i}
                     >
-                      <button
+                      <Link
+                        href={href}
                         className={`nav-link cursor-pointer  ${
                           isActiveLink ? "active-link" : ""
                         }`}
-                        onClick={() => scrollToSection(item.id, item.link)}
+                        onClick={handleNavClick}
                       >
                         {item.name}
-                      </button>
+                      </Link>
                     </motion.li>
                   );
                 })}

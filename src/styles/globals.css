@@ -3153,7 +3153,7 @@ video::-webkit-media-controls-panel {
   font-family: var(--font-family-sequel-book);
   font-weight: 405;
   font-size: 24px;
-  line-height: 48px;
+  line-height: 30px;
   letter-spacing: 0%;
   margin-bottom: 24px;
   color: #000100;
@@ -3190,7 +3190,7 @@ video::-webkit-media-controls-panel {
   .privacy-text {
     font-size: 0.98rem;
     padding-inline: 1rem;
-    text-align: justify;  
+    text-align: justify;
     text-align-last: left;
     word-break: break-word;
     /* fix space problem like word space */
@@ -3198,7 +3198,7 @@ video::-webkit-media-controls-panel {
     margin-bottom: 1.5rem;
   }
 
-  .partner-grid{
+  .partner-grid {
     gap: 4rem;
   }
 
@@ -3355,7 +3355,7 @@ video::-webkit-media-controls-panel {
     padding-top: 3rem !important;
   }
 
-  .close-icon{
+  .close-icon {
     top: 2rem !important;
   }
 
@@ -4495,15 +4495,15 @@ video::-webkit-media-controls-panel {
     background: #f1ebe3;
   }
 
-  .privacy-text{
+  .privacy-text {
     line-height: 30px;
   }
 
- .partner-card{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
- }
+  .partner-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   .navbar {
     max-width: 100vw !important;
@@ -4644,7 +4644,7 @@ video::-webkit-media-controls-panel {
     margin-bottom: 0.5rem;
   }
 
-  .hero-section .text-section h2{
+  .hero-section .text-section h2 {
     margin-bottom: -8px;
   }
 
@@ -4658,6 +4658,14 @@ video::-webkit-media-controls-panel {
     /* Removed manual spacing to fix "too much space" issue */
     line-height: 1.8rem;
     margin-bottom: 1.5rem;
+  }
+
+  .navbar-main-container {
+    padding-inline: 0 !important;
+  }
+
+  .nav-toggle {
+    background: white !important;
   }
 }
 
@@ -5019,6 +5027,26 @@ video::-webkit-media-controls-panel {
   }
 }
 
+@media (min-width: 1341px) and (max-width: 1360px) {
+  .natureinspiredvilla-sub-container-content-holder {
+    margin-top: -15rem !important;
+  }
+  .natureinspiredvilla-text-holder-and-content-holder h3 {
+    max-width: 70%;
+  }
+
+  .social-media-icons {
+    padding-top: 0;
+    margin-bottom: -9rem;
+    padding-top: 3rem;
+    margin-left: auto;
+  }
+
+  .hero-section .text-section h2{
+    margin-bottom: -5px;
+  }
+}
+
 @media (min-width: 1341px) and (max-width: 1390px) {
   /* your styles here */
   .nav-action,
@@ -5158,14 +5186,14 @@ video::-webkit-media-controls-panel {
     background: #2c6c22 !important;
   }
 
-  .privacy-card{
+  .privacy-card {
     padding-inline: 1.2rem;
   }
-  .privacy-text{
+  .privacy-text {
     line-height: 30px;
   }
 
-  .hero-section .text-section h2{
+  .hero-section .text-section h2 {
     line-height: 0.6;
     margin-bottom: -4px;
   }
