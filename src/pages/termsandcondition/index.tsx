@@ -4,9 +4,11 @@ import TermsDetails from "./components/TermsDetails";
 
 function index() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <TermsDetails />
+      <div className="flex-grow">
+        <TermsDetails />
+      </div>
       <FooterSection />
     </div>
   );

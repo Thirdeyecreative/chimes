@@ -19,21 +19,25 @@ export default function PartnerLeadCards() {
         <div className="partner-grid">
           {/* Card 1 */}
           <div className="partner-card">
-            <div className="partner-image">
-              <Image
-                src="/assets/channel-partner.webp"
-                alt="Channel Partner Registration"
-                fill
-              />
-            </div>
+            <div>
+              <div className="partner-image">
+                <Image
+                  src="/assets/channel-partner.webp"
+                  alt="Channel Partner Registration"
+                  fill
+                />
+              </div>
 
+              <div className="partner-content">
+                <h3>Channel Partner Registration</h3>
+                <p>
+                  Join hands with The Chimes & represent villas that stand for
+                  space, sustainability & thoughtful design. Partner with us
+                  to create long term value, for your clients & your business.
+                </p>
+              </div>
+            </div>
             <div className="partner-content">
-              <h3>Channel Partner Registration</h3>
-              <p>
-                Join hands with The Chimes and represent villas that stand for
-                space, sustainability and thoughtful design. Partner with us to
-                create long term value, for your clients and your business.
-              </p>
               <button onClick={() => setIsPopupOpen(true)}>
                 Register as a Partner
               </button>
@@ -42,21 +46,25 @@ export default function PartnerLeadCards() {
 
           {/* Card 2 */}
           <div className="partner-card">
-            <div className="partner-image">
-              <Image
-                src="/assets/lead-registration-2.webp"
-                alt="Lead Registration"
-                fill
-              />
-            </div>
+            <div>
+              <div className="partner-image">
+                <Image
+                  src="/assets/lead-registration-2.webp"
+                  alt="Lead Registration"
+                  fill
+                />
+              </div>
 
+              <div className="partner-content">
+                <h3>Lead Registration</h3>
+                <p>
+                  Share your details with us, and our team will help you explore
+                  villas crafted for comfort, efficiency, and conscious living,
+                  at your own pace, with complete clarity.
+                </p>
+              </div>
+            </div>
             <div className="partner-content">
-              <h3>Lead Registration</h3>
-              <p>
-                Share your details with us, and our team will help you explore
-                villas crafted for comfort, efficiency, and conscious living, at
-                your own pace, with complete clarity.
-              </p>
               <button onClick={() => setIsPopupOpen2(true)}>
                 Submit Lead Details
               </button>
