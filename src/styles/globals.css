@@ -5042,12 +5042,32 @@ video::-webkit-media-controls-panel {
     margin-left: auto;
   }
 
-  .hero-section .text-section h2{
+  .hero-section .text-section h2 {
     margin-bottom: -5px;
   }
 
-  .privacy-card{
+  .privacy-card {
     padding-inline: 1rem;
+  }
+
+  .floor-plan-container-holder {
+    z-index: 2;
+    grid-template-columns: 0.6fr 1.1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1439px;
+    height: fit-content;
+    margin: auto;
+    padding: 6rem 0;
+    display: grid;
+    position: absolute;
+    inset: 0;
+  }
+
+  .right-side-section-inFloor-plan{
+    margin-left: 1rem;
   }
 }
 
