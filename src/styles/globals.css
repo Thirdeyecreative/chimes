@@ -5045,6 +5045,10 @@ video::-webkit-media-controls-panel {
   .hero-section .text-section h2{
     margin-bottom: -5px;
   }
+
+  .privacy-card{
+    padding-inline: 1rem;
+  }
 }
 
 @media (min-width: 1341px) and (max-width: 1390px) {
