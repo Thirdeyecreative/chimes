@@ -3153,7 +3153,7 @@ video::-webkit-media-controls-panel {
   font-family: var(--font-family-sequel-book);
   font-weight: 405;
   font-size: 24px;
-  line-height: 30px;
+  line-height: 48px;
   letter-spacing: 0%;
   margin-bottom: 24px;
   color: #000100;
@@ -4485,7 +4485,6 @@ video::-webkit-media-controls-panel {
     text-align-last: left;
     word-break: break-word;
     /* Removed manual spacing to fix "too much space" issue */
-    line-height: 1.8rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -4495,9 +4494,7 @@ video::-webkit-media-controls-panel {
     background: #f1ebe3;
   }
 
-  .privacy-text {
-    line-height: 30px;
-  }
+  
 
   .partner-card {
     display: flex;
@@ -4650,7 +4647,7 @@ video::-webkit-media-controls-panel {
 
   .privacy-text {
     font-size: 1.5rem;
-    line-height: 2rem;
+  
     padding-inline: 1.5rem;
     text-align: justify;
     text-align-last: left;
@@ -5029,11 +5026,16 @@ video::-webkit-media-controls-panel {
 
 @media (min-width: 1341px) and (max-width: 1360px) {
   .natureinspiredvilla-sub-container-content-holder {
-    margin-top: -15rem !important;
+    margin-top: -3rem !important;
   }
   .natureinspiredvilla-text-holder-and-content-holder h3 {
     max-width: 70%;
   }
+
+  .desktop-view {
+    display: block;
+    width: 580px !important;
+}
 
   .social-media-icons {
     padding-top: 0;
@@ -5210,12 +5212,12 @@ video::-webkit-media-controls-panel {
     background: #2c6c22 !important;
   }
 
+ 
+
   .privacy-card {
     padding-inline: 1.2rem;
   }
-  .privacy-text {
-    line-height: 30px;
-  }
+  
 
   .hero-section .text-section h2 {
     line-height: 0.6;
@@ -5265,6 +5267,24 @@ video::-webkit-media-controls-panel {
   .audio-button-pause svg path {
     fill: white !important;
   }
+
+   .floor-plan-container-holder {
+    z-index: 2;
+    grid-template-columns: 0.6fr 1.1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1439px;
+    height: fit-content;
+    margin: auto;
+    padding: 6rem 0;
+    display: grid;
+    position: absolute;
+    inset: 0;
+}
+
+
 }
 @media screen and (min-width: 1920px) {
   .custom-image-large {
