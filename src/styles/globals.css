@@ -3351,6 +3351,12 @@ video::-webkit-media-controls-panel {
   .right-side-popup-content-holder {
     height: 98vh;
     overflow-x: scroll;
+    top: 10%;
+    padding-top: 3rem !important;
+  }
+
+  .close-icon{
+    top: 2rem !important;
   }
 
   .chimes-map-popup-card {
