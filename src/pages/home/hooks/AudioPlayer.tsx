@@ -13,9 +13,9 @@ const AudioPlayer = () => {
   // 1. ADD THIS EFFECT: Listen to the actual DOM element for state changes
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return; 
+    if (!audio) return;
 
-    const onPlay = () => setIsPlaying(true);  
+    const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
 
     // Subscribe to native audio events
@@ -32,7 +32,29 @@ const AudioPlayer = () => {
   useEffect(() => {
     if (hasGlobalAudioTriggered) return;
 
-    const handleGlobalClick = async () => {
+    const handleGlobalClick = async (e: any) => {
+      // Check if the click is on a restricted navigation link
+      const target = e.target as HTMLElement;
+
+      // Check restricted text content (for buttons/links)
+      const element = target.closest("button") || target.closest("a") || target;
+      const text = element.innerText || element.textContent || "";
+      const restrictedTexts = ["Channel Partner", "Careers"];
+
+      // If text matches exactly or contains the restricted text (ignoring case/whitespace if needed, but exact match is safer for now)
+      if (restrictedTexts.some((t) => text.trim() === t)) {
+        return;
+      }
+
+      // Also check href if it's a link (backup for other links)
+      const link = target.closest("a");
+      if (link) {
+        const href = link.getAttribute("href") || "";
+        if (href.includes("channelpartner") || href.includes("careers")) {
+          return;
+        }
+      }
+
       if (!isPlaying && audioRef.current && !hasInteracted) {
         try {
           await audioRef.current.play();
@@ -43,11 +65,16 @@ const AudioPlayer = () => {
       }
     };
 
-    document.addEventListener("click", handleGlobalClick, { once: true });
+    document.addEventListener("click", handleGlobalClick);
     return () => {
       document.removeEventListener("click", handleGlobalClick);
     };
-  }, [hasGlobalAudioTriggered, hasInteracted, isPlaying]);
+  }, [
+    hasGlobalAudioTriggered,
+    hasInteracted,
+    isPlaying,
+    setHasGlobalAudioTriggered,
+  ]);
 
   // 3. UPDATE TOGGLE FUNCTION: Remove manual state setting
   const togglePlayPause = async (e: any) => {
