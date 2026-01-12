@@ -184,7 +184,7 @@ function SendEnquiryPopup({
                   </button>
 
                   <button type="button" className="reach-us-in-popup-section">
-                    Or simply give us a call at: <span>9731744266</span>
+                    Or simply give us a call at: <span>7624999594</span>
                   </button>
                 </form>
               </div>

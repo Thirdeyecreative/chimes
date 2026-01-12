@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 
 function FooterSection() {
-  const phoneNumber = "9731744266";
+  const phoneNumber = "7624999594";
   const emailAddress = "contact@raiseinfra.in";
   const locationAddress = "Chikkatirupati Rd, Sarjapura, Bengaluru - 562125";
   const googleMapsUrl = `https://maps.app.goo.gl/UYCxebpZkefztAgLA`;
@@ -123,7 +123,7 @@ function FooterSection() {
               </svg>
             </Link>
             <Link
-              href="https://wa.me/919731744266"
+              href="https://wa.me/917624999594"
               target="_blank"
               rel="noopener noreferrer"
             >
