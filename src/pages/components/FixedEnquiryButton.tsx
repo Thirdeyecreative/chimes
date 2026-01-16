@@ -56,6 +56,15 @@ const FixedEnquiryButton = ({
             transform: translateX(20px) rotate(180deg);
           }
         }
+
+        /* iPad Pro Portrait (12.9-inch is 1024px wide) */
+        @media only screen and (min-width: 1024px) and (orientation: portrait) {
+          .hide-on-desktop {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(20px) rotate(180deg);
+          }
+        }
       `}</style>
     </div>
   );
