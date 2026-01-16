@@ -406,7 +406,7 @@ export default function Navbar() {
         </motion.nav>
 
         <SendEnquiryPopup open={isOpen} setOpen={setIsOpen} />
-        <FixedEnquiryButton />
+        <FixedEnquiryButton isNavbarVisible={isNavbarVisible} />
       </div>
     </header>
   );

@@ -1,11 +1,21 @@
 "use client";
 import { useAuthContext } from "../AuthContext/AuthContext";
 
-const FixedEnquiryButton = () => {
+interface FixedEnquiryButtonProps {
+  isNavbarVisible?: boolean;
+}
+
+const FixedEnquiryButton = ({
+  isNavbarVisible = false,
+}: FixedEnquiryButtonProps) => {
   const { setIsOpen } = useAuthContext();
 
   return (
-    <div className="fixed-enquiry-container">
+    <div
+      className={`fixed-enquiry-container ${
+        isNavbarVisible ? "hide-on-desktop" : ""
+      }`}
+    >
       <button
         className="enquiry-button-in-fixed-enquiry"
         onClick={() => setIsOpen(true)}
@@ -30,12 +40,21 @@ const FixedEnquiryButton = () => {
           top: 12%;
           right: 0;
           z-index: 9999;
-          transition: transform 0.3s ease-in-out;
+          transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
           /* Use writing-mode for sharp vertical text instead of rotate */
           writing-mode: vertical-lr;
           text-orientation: mixed;
           transform: rotate(180deg);
+        }
+
+        @media (min-width: 1026px) {
+          .hide-on-desktop {
+            opacity: 0;
+            pointer-events: none;
+            /* Optional: move it slightly off-screen for better effect */
+            transform: translateX(20px) rotate(180deg);
+          }
         }
       `}</style>
     </div>
