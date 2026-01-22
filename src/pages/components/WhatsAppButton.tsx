@@ -4,7 +4,7 @@ const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
     // TODO: Update with your actual WhatsApp business phone number (with country code)
     // Format: "+919876543210" for India, "+11234567890" for USA, etc.
-    const phoneNumber = "+919876543210"; // Replace with actual number
+    const phoneNumber = "+917624999594"; // Replace with actual number
     const message = "Hi, I'm interested in The Chimes";
     const whatsappUrl = `https://wa.me/${phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
