@@ -10,6 +10,7 @@ import { useAuthContext } from "../AuthContext/AuthContext";
 import GlassSurface from "@/ReactBits/GlassSurface/GlassSurface";
 import { useRouter, usePathname } from "next/navigation";
 import FixedEnquiryButton from "./FixedEnquiryButton";
+import WhatsAppButton from "./WhatsAppButton";
 
 // Define nav items outside component to keep it stable
 const navItems = [
@@ -18,7 +19,6 @@ const navItems = [
   { name: "Gallery", id: "gallery" },
   { name: "Amenities", id: "amenities" },
   { name: "Floor Plans", id: "floor-plans" },
-  { name: "Nearby", id: "nearby" },
   { name: "Channel Partner", id: null, link: "channelpartner" },
   { name: "Careers", id: null, link: "careers" },
 ];
@@ -65,7 +65,7 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     navItems.forEach((item) => {
@@ -332,6 +332,7 @@ export default function Navbar() {
           <div className="nav-actions">
             <motion.div initial={{ opacity: 1 }} className="nav-action">
               <AudioPlayer />
+              <WhatsAppButton />
               <GlassSurface
                 width={"fit-content"}
                 height={"fit-content"}
