@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
 import AuthContextProvider from "./AuthContext/AuthContext";
 import { Analytics } from "@vercel/analytics/next";
 import PersistentAudio from "./components/PersistentAudio";
@@ -46,6 +47,15 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta name="twitter:image" content="/assets/Website.webp" />
       </Head>
+
+      <Script id="zsiqchat" strategy="afterInteractive">
+        {`window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`}
+      </Script>
+      <Script
+        id="zsiqscript"
+        src="https://salesiq.zohopublic.in/widget?wc=siq2d93279f2cff52979471aee22d180a8d7c16ab776be0df21414da77bc4a373b4"
+        strategy="afterInteractive"
+      />
 
       <Analytics />
       <PersistentAudio />
