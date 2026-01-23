@@ -332,7 +332,7 @@ export default function Navbar() {
           <div className="nav-actions">
             <motion.div initial={{ opacity: 1 }} className="nav-action">
               <AudioPlayer />
-              <WhatsAppButton />
+              <WhatsAppButton isScrolled={!isAtTop} />
               <GlassSurface
                 width={"fit-content"}
                 height={"fit-content"}
