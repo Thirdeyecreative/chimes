@@ -18,6 +18,8 @@ function SendEnquiryPopup({
     phone: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   // 1. ADD THIS LOGIC: Check if form is valid
   // It checks if fields are not empty AND if there are no errors in error.phone
   const isFormValid =
@@ -60,25 +62,48 @@ function SendEnquiryPopup({
     }
   };
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (error.phone) {
       alert("Please enter a valid phone number");
       return;
     }
+    setLoading(true);
+    try {
+      const res = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        }),
+      });
 
-    console.log("Enquiry Data Submitted:", formData);
+      const result = await res.json();
+      console.log(result);
 
-    const pdfUrl = "/assets/The Chimes - Brochure.pdf";
-    const link = document.createElement("a");
-    link.href = pdfUrl;
-    link.download = "Brochure.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      if (result.success) {
+        const link = document.createElement("a");
+        link.href = "/assets/The Chimes - Brochure.pdf";
+        link.download = "Brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-    handleClose();
+        handleClose();
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClose = () => {
@@ -154,8 +179,8 @@ function SendEnquiryPopup({
                     <label htmlFor="contact">Contact Number</label>
                     <div className="relative">
                       <input
-                        type="number"
-                        id="contact"
+                        type="tel"
+                        id="phone"
                         placeholder="Enter your contact number"
                         value={formData.phone}
                         onChange={handlePhoneChange}
@@ -175,12 +200,40 @@ function SendEnquiryPopup({
                   {/* 2. UPDATE BUTTON: Add disabled attribute and styling */}
                   <button
                     type="submit"
-                    disabled={!isFormValid}
+                    disabled={!isFormValid || loading}
                     className={
-                      !isFormValid ? "opacity-50 cursor-not-allowed" : ""
+                      !isFormValid || loading
+                        ? "opacity-50 cursor-not-allowed flex items-center justify-center gap-2"
+                        : "flex items-center justify-center gap-2"
                     }
                   >
-                    Send Enquiry
+                    {loading ? (
+                      <>
+                        <svg
+                          className="animate-spin h-5 w-5 text-current"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Enquiry"
+                    )}
                   </button>
 
                   <button type="button" className="reach-us-in-popup-section">
