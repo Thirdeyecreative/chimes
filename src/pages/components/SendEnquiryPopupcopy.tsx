@@ -18,6 +18,8 @@ function SendEnquiryPopup({
     phone: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   // 1. ADDED: Logic to check if all fields are valid
   const isFormValid =
     formData.name.trim() !== "" &&
@@ -64,7 +66,7 @@ function SendEnquiryPopup({
     }
   };
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Prevent submission if there are validation errors
@@ -73,20 +75,45 @@ function SendEnquiryPopup({
       return;
     }
 
-    // 1. Log the data (or send to backend API here)
-    console.log("Download Request Submitted:", formData);
+    setLoading(true);
 
-    // 2. Trigger PDF Download
-    const pdfUrl = "/assets/The Chimes - Brochure.pdf";
-    const link = document.createElement("a");
-    link.href = pdfUrl;
-    link.download = "Brochure.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const res = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        }),
+      });
 
-    // 3. Close the popup
-    handleClose();
+      const result = await res.json();
+      console.log(result);
+
+      if (result.success) {
+        // Trigger PDF Download
+        const pdfUrl = "/assets/The Chimes - Brochure.pdf";
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "Brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Close the popup
+        handleClose();
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClose = () => {
@@ -127,7 +154,7 @@ function SendEnquiryPopup({
                   className="popup-dilog-right-image"
                 />
 
-                <h4>Download brochure</h4>
+                <h4>Download Floor Plan</h4>
                 <p>
                   Tell us a little about yourself, and we'll guide you to a home
                   that blends mindful design, natural comfort, and modern
@@ -182,12 +209,40 @@ function SendEnquiryPopup({
                   {/* 2. UPDATED: Button with disabled logic and styling */}
                   <button
                     type="submit"
-                    disabled={!isFormValid}
+                    disabled={!isFormValid || loading}
                     className={
-                      !isFormValid ? "opacity-50 cursor-not-allowed" : ""
+                      !isFormValid || loading
+                        ? "opacity-50 cursor-not-allowed flex items-center justify-center gap-2"
+                        : "flex items-center justify-center gap-2"
                     }
                   >
-                    Download
+                    {loading ? (
+                      <>
+                        <svg
+                          className="animate-spin h-5 w-5 text-current"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Downloading...
+                      </>
+                    ) : (
+                      "Download"
+                    )}
                   </button>
                 </form>
               </div>
