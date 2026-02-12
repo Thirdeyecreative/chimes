@@ -8,6 +8,7 @@ import PersistentAudio from "./components/PersistentAudio";
 import PersistentPopupTimer from "./components/PersistentPopupTimer";
 import Navbar from "./components/Navbar";
 import FooterSection from "./components/FooterSection";
+import UTMTracker from "./components/UTMTracker";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -60,6 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Analytics />
       <PersistentAudio />
       <PersistentPopupTimer />
+      <UTMTracker />
 
       <div className="flex flex-col min-h-screen">
         <Navbar />

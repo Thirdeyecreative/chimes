@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import { useSearchParams } from "next/navigation";
 
 function SendEnquiryPopup({
   open = false,
@@ -13,6 +14,46 @@ function SendEnquiryPopup({
     email: "",
     phone: "",
   });
+
+  const [utmParams, setUtmParams] = useState({
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_ad_group: "",
+    utm_term: "",
+    utm_device: "",
+    utm_placement: "",
+    utm_ad_name: "",
+    gclid: "",
+  });
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams) {
+      setUtmParams({
+        utm_source:
+          searchParams.get("utm_source") ||
+          searchParams.get("gad_source") ||
+          "",
+        utm_medium: searchParams.get("utm_medium") || "",
+        utm_campaign:
+          searchParams.get("utm_campaign") ||
+          searchParams.get("gad_campaignid") ||
+          "",
+        utm_ad_group: searchParams.get("utm_ad_group") || "",
+        utm_term: searchParams.get("utm_term") || "",
+        utm_device: searchParams.get("utm_device") || "",
+        utm_placement: searchParams.get("utm_placement") || "",
+        utm_ad_name: searchParams.get("utm_ad_name") || "",
+        gclid:
+          searchParams.get("gclid") ||
+          searchParams.get("wbraid") ||
+          searchParams.get("gbraid") ||
+          "",
+      });
+    }
+  }, [searchParams]);
 
   const [error, setError] = useState({
     phone: "",
@@ -80,6 +121,7 @@ function SendEnquiryPopup({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          ...utmParams,
         }),
       });
 

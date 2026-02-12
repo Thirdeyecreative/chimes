@@ -1,0 +1,47 @@
+﻿Executing handler with mock request...
+{
+  name: 'Test User',
+  email: 'test@example.com',
+  phone: '1234567890',
+  apiKey: 'test_key',
+  appName: 'test_app'
+}
+
+--- FETCH CALL ---
+URL: https://cloud.paramantra.com/paramantra/api/data/new/format/json
+Method: POST
+Headers: {
+  'Content-Type': 'application/x-www-form-urlencoded',
+  'X-API-KEY': 'test_key',
+  'ACTION-ON': 'test_app',
+  Authorization: 'Basic dGVzdF9rZXk6'
+}
+Body: rep_id=sanjeet%40raiseinfra.in&channel_id=Enquire_Now&subject=Lead+from+Website&f_name=Test+User&l_name=+&email=test%40example.com&phonefax=1234567890&notes=Website+enquiry+for+The+Chimes+project&project=The+Chimes&alert_client=0&alert_rep=0&USOURCE=google&UMEDIUM=cpc&utm_campaign=summer_sale&utm_ad_group=ad_group_1&utm_term=luxury+homes&utm_device=mobile&utm_gclid=test_gclid_123&utm_placement=feed&utm_ad_name=banner_ad
+
+--- PARSED BODY PARAMS ---
+rep_id: sanjeet@raiseinfra.in
+channel_id: Enquire_Now
+subject: Lead from Website
+f_name: Test User
+l_name:  
+email: test@example.com
+phonefax: 1234567890
+notes: Website enquiry for The Chimes project
+project: The Chimes
+alert_client: 0
+alert_rep: 0
+USOURCE: google
+UMEDIUM: cpc
+utm_campaign: summer_sale
+utm_ad_group: ad_group_1
+utm_term: luxury homes
+utm_device: mobile
+utm_gclid: test_gclid_123
+utm_placement: feed
+utm_ad_name: banner_ad
+
+--- RESPONSE STATUS ---
+Code: 200
+
+--- RESPONSE JSON ---
+{ success: true, data: { status: 'success', data: 'mock_data' } }
