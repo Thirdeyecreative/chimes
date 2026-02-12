@@ -20,8 +20,6 @@ global.fetch = async (url, options) => {
   console.log("\n--- FETCH CALL ---");
   console.log("URL:", url);
   console.log("Method:", options.method);
-  console.log("Headers:", options.headers);
-  console.log("Body:", options.body);
 
   // Parse body to verify content
   const params = new URLSearchParams(options.body);
@@ -44,13 +42,8 @@ const req = {
     phone: "1234567890",
     utm_source: "google",
     utm_medium: "cpc",
-    utm_campaign: "summer_sale",
-    utm_ad_group: "ad_group_1",
-    utm_term: "luxury homes",
-    utm_device: "mobile",
-    utm_placement: "feed",
-    utm_ad_name: "banner_ad",
     gclid: "test_gclid_123",
+    project: "Custom Project Name", // Testing explicit project name
   },
 };
 
@@ -68,13 +61,10 @@ const res = {
 };
 
 // Execute the code
-console.log("Executing handler with mock request...");
+console.log("Executing handler with project field...");
 
-// Wrap in an async IIFE to allow await if needed, but handler is async
 (async () => {
   try {
-    // Evaluate the modified file content to define the handler function in this scope
-    // We append a call to handler(req, res) at the end
     const runnableCode = fileContent + "\n; handler(req, res);";
     await eval(runnableCode);
   } catch (error) {

@@ -121,6 +121,7 @@ function SendEnquiryPopup({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          project: "The Chimes",
           ...utmParams,
         }),
       });

@@ -17,6 +17,7 @@ export default async function handler(req, res) {
       utm_placement,
       utm_ad_name,
       gclid,
+      project,
     } = req.body;
 
     const input = {
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
       email: email,
       phonefax: phone,
       notes: "Website enquiry for The Chimes project",
-      project: "The Chimes",
+      project: project || "The Chimes",
       alert_client: 0,
       alert_rep: 0,
       USOURCE: utm_source || "Direct",
