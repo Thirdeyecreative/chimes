@@ -41,11 +41,11 @@ function SendEnquiryPopup({
           searchParams.get("utm_campaign") ||
           searchParams.get("gad_campaignid") ||
           "",
-        utm_ad_group: searchParams.get("utm_ad_group") || "",
+        utm_ad_group: searchParams.get("utm_ad_group") || "GAdgroup",
         utm_term: searchParams.get("utm_term") || "",
         utm_device: searchParams.get("utm_device") || "",
-        utm_placement: searchParams.get("utm_placement") || "",
-        utm_ad_name: searchParams.get("utm_ad_name") || "",
+        utm_placement: searchParams.get("utm_placement") || "GPlacement",
+        utm_ad_name: searchParams.get("utm_ad_name") || "GAdname",
         gclid:
           searchParams.get("gclid") ||
           searchParams.get("wbraid") ||
