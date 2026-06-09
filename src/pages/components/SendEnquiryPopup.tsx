@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useSearchParams } from "next/navigation";
 
@@ -130,6 +130,15 @@ function SendEnquiryPopup({
       console.log(result);
 
       if (result.success) {
+        // Trigger Google Ads conversion event
+        if (typeof window !== "undefined" && (window as any).gtag) {
+          (window as any).gtag("event", "conversion", {
+            send_to: "AW-17796791156/zO1UCIO_6rscEPT2laZC",
+            value: 1.0,
+            currency: "INR",
+          });
+        }
+
         const link = document.createElement("a");
         link.href = "/assets/The Chimes - Brochure.pdf";
         link.download = "Brochure.pdf";

@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 
 function ChannelPartnerRegistrationPopup({
@@ -82,6 +82,16 @@ function ChannelPartnerRegistrationPopup({
     e.preventDefault();
     if (!isFormValid) return;
     console.log("Channel Partner Registration Data:", formData);
+
+    // Trigger Google Ads conversion event
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-17796791156/zO1UCIO_6rscEPT2laZC",
+        value: 1.0,
+        currency: "INR",
+      });
+    }
+
     handleClose();
   };
 

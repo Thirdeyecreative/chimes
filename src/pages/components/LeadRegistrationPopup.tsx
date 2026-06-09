@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 
 function LeadRegistrationPopup({
@@ -71,6 +71,16 @@ function LeadRegistrationPopup({
     e.preventDefault();
     if (!isFormValid) return;
     console.log("Lead Registration Data:", formData);
+
+    // Trigger Google Ads conversion event
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-17796791156/zO1UCIO_6rscEPT2laZC",
+        value: 1.0,
+        currency: "INR",
+      });
+    }
+
     handleClose();
   };
 

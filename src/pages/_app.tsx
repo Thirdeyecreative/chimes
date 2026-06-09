@@ -58,6 +58,20 @@ export default function App({ Component, pageProps }: AppProps) {
         strategy="afterInteractive"
       />
 
+      {/* Google Tag (gtag.js) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-17796791156"
+        strategy="afterInteractive"
+      />
+      <Script id="google-tag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17796791156');
+        `}
+      </Script>
+
       <Analytics />
       <PersistentAudio />
       <PersistentPopupTimer />
